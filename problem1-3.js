@@ -2,12 +2,6 @@ console.log(Problem1());
 console.log(Problem2());
 console.log(Problem3());
 
-//function ShowAnswer() {
-//  document.writeln(Problem1(), "<br>");
-//  document.writeln(Problem2(), "<br>");
-//  document.writeln(Problem3(), "<br>");
-//}
-
 function Problem1() {
   var numSum = 0;
   var numCnt;
@@ -23,7 +17,7 @@ function Problem1() {
     numOL = numOL + 15 * numCnt;
   }
 
-  return "The answer of Problem 1 is " + (numSum - numOL);
+  return 'The answer of Problem 1 is ' + (numSum - numOL);
 }
 
 function Problem2() {
@@ -47,7 +41,7 @@ function Problem2() {
     }
     numCnt++;
   }
-  return "The answer of Problem 2 is " + numSum;
+  return 'The answer of Problem 2 is ' + numSum;
 }
 
 function Problem3() {
@@ -65,5 +59,5 @@ function Problem3() {
       }
     }
   }
-  return "The answer of Problem 3 is " + arrayPF.pop();
+  return 'The answer of Problem 3 is ' + arrayPF.pop();
 }
