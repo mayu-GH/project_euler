@@ -1,7 +1,7 @@
 'use strict';
 //1-100までの"2乗の和"と"和の2乗"の差を求める
 
-function GetNumSS(numFirst, numLast) {
+function GetDifference(numFirst, numLast) {
   //和の2乗
   const numSumSquare = Math.pow((numLast * (numFirst + numLast)) / 2, 2);
   //2乗の和
@@ -11,7 +11,7 @@ function GetNumSS(numFirst, numLast) {
     numSquareSum += Math.pow(numCnt, 2);
   }
 
-  console.log(numSumSquare - numSquareSum);
+  return numSumSquare - numSquareSum;
 }
 
-GetNumSS(1, 100);
+console.log(GetDifference(1, 100));
