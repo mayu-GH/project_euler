@@ -8,8 +8,7 @@ function getPrimeNumber(numMaxLength) {
   let numTmp = 14;
 
   while (arrayPrime.length < numMaxLength) {
-    if (arrayPrime.some((element) => numTmp % element === 0)) {
-    } else {
+    if (!arrayPrime.some((element) => numTmp % element === 0)) {
       arrayPrime.push(numTmp);
     }
     numTmp++;
