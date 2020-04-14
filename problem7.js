@@ -1,23 +1,18 @@
 'use strict';
 //10001番目の素数を求める
 
-console.log(GetPrimeNumber(10001));
+console.log(getPrimeNumber(10001));
 
-function GetPrimeNumber(numMaxLength) {
+function getPrimeNumber(numMaxLength) {
   const arrayPrime = [2, 3, 5, 7, 11, 13];
+  let numTmp = 14;
 
-  for (let numTmp = 14; arrayPrime.length < numMaxLength; numTmp++) {
-    let blnPrime = true; //素数判定
-    for (let numIndex = 0; numIndex < arrayPrime.length; numIndex++) {
-      if (numTmp % arrayPrime[numIndex] === 0) {
-        //何かしらで割り切れたら素数ではない
-        blnPrime = false;
-        break;
-      }
-    }
-    if (blnPrime) {
+  while (arrayPrime.length < numMaxLength) {
+    if (arrayPrime.some((element) => numTmp % element === 0)) {
+    } else {
       arrayPrime.push(numTmp);
     }
+    numTmp++;
   }
 
   return arrayPrime[numMaxLength - 1];
