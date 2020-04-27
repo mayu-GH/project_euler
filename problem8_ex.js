@@ -5,7 +5,9 @@ console.log(getGreatestProduct(13));
 
 function getGreatestProduct(numberDigit) {
   const fs = require('fs');
-  const arrayNumber = fs.readFileSync('./numbers.txt', 'utf-8').replace(/\r?\n/g, '').split('');
+  const path = require('path');
+  const filepath = path.join(__dirname, 'numbers.txt');
+  const arrayNumber = fs.readFileSync(filepath, 'utf-8').replace(/\r?\n/g, '').split('');
   let numberMax = 0;
 
   //13ずつ積を求める
