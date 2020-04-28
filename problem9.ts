@@ -5,14 +5,14 @@
 
 console.log(getPythagoreanTriplet(1000));
 
-function getPythagoreanTriplet(numSum: number) {
-  for (let numCnt1 = 1; numCnt1 < Math.sqrt(numSum); numCnt1++) {
-    for (let numCnt2 = 1; numCnt2 < Math.sqrt(numSum); numCnt2++) {
-      const numA = Math.pow(numCnt1, 2) - Math.pow(numCnt2, 2);
-      const numB = 2 * numCnt1 * numCnt2;
-      const numC = Math.pow(numCnt1, 2) + Math.pow(numCnt2, 2);
-      if (Math.pow(numA, 2) + Math.pow(numB, 2) === Math.pow(numC, 2) && numA + numB + numC === numSum) {
-        return numA * numB * numC;
+function getPythagoreanTriplet(sum: number) {
+  for (let i = 1; i < Math.sqrt(sum); i++) {
+    for (let j = 1; i > j; j++) {
+      const a = Math.pow(i, 2) - Math.pow(j, 2);
+      const b = 2 * i * j;
+      const c = Math.pow(i, 2) + Math.pow(j, 2);
+      if (a + b + c === sum) {
+        return a * b * c;
       }
     }
   }
