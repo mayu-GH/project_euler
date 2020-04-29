@@ -4,15 +4,25 @@
 console.log(getPrimeNumber(10001));
 
 function getPrimeNumber(numMaxLength) {
-  const arrayPrime = [2, 3, 5, 7, 11, 13];
-  let numTmp = 14;
+  let numTmp = 1;
+  let counter = 0;
 
-  while (arrayPrime.length < numMaxLength) {
-    if (!arrayPrime.some((element) => numTmp % element === 0)) {
-      arrayPrime.push(numTmp);
+  while (counter <= numMaxLength) {
+    if (isPrime(numTmp)) {
+      counter++;
     }
     numTmp++;
   }
 
-  return arrayPrime[numMaxLength - 1];
+  return numTmp - 1;
+}
+
+function isPrime(numTmp, arrayPrime) {
+  const numMax = Math.floor(Math.sqrt(numTmp));
+  for (let i = 2; i <= numMax; i++) {
+    if (numTmp % i === 0) {
+      return false;
+    }
+  }
+  return true;
 }

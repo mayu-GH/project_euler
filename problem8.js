@@ -1,9 +1,9 @@
 'use strict';
 //以下1000桁の数字の中で、隣接する13桁の数字のうち、最大の積を求める。
 
-console.log(GetGreatestProduct(13));
+console.log(getGreatestProduct(13));
 
-function GetGreatestProduct(numberDigit) {
+function getGreatestProduct(numberDigit) {
   const stringNumber =
     '73167176531330624919225119674426574742355349194934' +
     '96983520312774506326239578318016984801869478851843' +
@@ -36,8 +36,9 @@ function GetGreatestProduct(numberDigit) {
 
   //13ずつ積を求める
   for (let i = 0; i < arrayNumber.length; i++) {
-    const reducer = (accumulator, currentValue) => accumulator * currentValue;
-    const numberTmp = arrayNumber.slice(i, i + numberDigit).reduce(reducer);
+    const numberTmp = arrayNumber
+      .slice(i, i + numberDigit)
+      .reduce((accumulator, currentValue) => accumulator * currentValue);
     if (numberMax < numberTmp) {
       numberMax = numberTmp;
     }
