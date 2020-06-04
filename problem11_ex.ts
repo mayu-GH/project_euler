@@ -19,7 +19,7 @@ util.readFile(filepath).then((contents) => {
 //配列に入れる
 function makeArray(contents: string): number[][] {
   const rowArray: string[] = contents.trim().split(/\r\n/);
-  let returnArray: number[][] = new Array();
+  const returnArray: number[][] = new Array();
   for (let i = 0; i < rowArray.length; i++) {
     const tmpArray: number[] = rowArray[i].split(' ').map((value) => parseInt(value, 10));
     returnArray.push(tmpArray);
