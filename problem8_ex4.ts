@@ -4,6 +4,13 @@ import * as path from 'path';
 const filepathA: string = path.join(__dirname, 'fileA.txt');
 const filepathB: string = path.join(__dirname, 'fileB.txt');
 
+//promise使う意味
+getFileContents(filepathA).then((valueA) => {
+  getFileContents(filepathB).then((valueB) => {
+    console.log(valueA * valueB);
+  });
+});
+
 function getFileContents(filepath: string): Promise<number> {
   return new Promise((resolve) => {
     fs.readFile(filepath, 'utf-8', (err, data) => {
@@ -11,7 +18,3 @@ function getFileContents(filepath: string): Promise<number> {
     });
   });
 }
-
-//aを計算
-//bを計算
-//a*bを出力

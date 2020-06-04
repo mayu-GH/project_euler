@@ -29,14 +29,11 @@ function readFile(): Promise<string> {
 
 //配列に入れる
 function makeArray(contents: string): number[][] {
-  const rowArray: string[] = contents.split(/\r\n/);
+  const rowArray: string[] = contents.trim().split(/\r\n/);
   let returnArray: number[][] = new Array();
-  for (let i = 0; i < rowArray.length - 1; i++) {
-    let tmpArray: number[] = rowArray[i].split(' ').map((value) => parseInt(value, 10));
-    returnArray[i] = [];
-    for (let j = 0; j < tmpArray.length; j++) {
-      returnArray[i][j] = tmpArray[j];
-    }
+  for (let i = 0; i < rowArray.length; i++) {
+    const tmpArray: number[] = rowArray[i].split(' ').map((value) => parseInt(value, 10));
+    returnArray.push(tmpArray);
   }
   return returnArray;
 }
