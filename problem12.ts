@@ -1,7 +1,8 @@
 //自然を足してつくられる数列のうち、500を超える約数を持つ最小の数は？
-//console.log(getFirstTriangleNumber(500));
 
-function getFirstTriangleNumber(divisorCount: number) {
+console.log(getFirstTriangleNumber(500));
+
+function getFirstTriangleNumber(divisorCount: number): number {
   let addingNumber = 0;
   let resultCount = 0;
   for (let i = 1; resultCount < divisorCount; i++) {
