@@ -5,9 +5,11 @@ console.log(getFirstTriangleNumber(500));
 function getFirstTriangleNumber(divisorCount: number): number {
   let addingNumber = 0;
   let resultCount = 0;
-  for (let i = 1; resultCount < divisorCount; i++) {
+  let i = 1;
+  while (resultCount < divisorCount) {
     addingNumber = addingNumber + i;
     resultCount = getDivisorCount(addingNumber);
+    i++;
   }
   return addingNumber;
 }
