@@ -16,15 +16,13 @@ function getFirstTriangleNumber(divisorCount: number): number {
 
 function getDivisorCount(addingNumber: number): number {
   let divisorCount = 0;
-  let i = 1;
-  while (i <= Math.sqrt(addingNumber)) {
+  for (let i = 1; i <= Math.sqrt(addingNumber); i++) {
     if (addingNumber % i === 0) {
       if (addingNumber === i ** 2) {
         divisorCount--;
       }
       divisorCount += 2;
     }
-    i++;
   }
   return divisorCount;
 }
