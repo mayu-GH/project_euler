@@ -1,7 +1,6 @@
 //n:偶数 → n/2
 //n:奇数 → 3n＋１
-//13 → 40 → 20 → 10 → 5 → 16 → 8 → 4 → 2 → 1
-//開始数13→10の連鎖
+//13 → 40 → 20 → 10 → 5 → 16 → 8 → 4 → 2 → 1(開始数13=>10の連鎖)
 //100万以下の開始数の中で、最も長い連鎖ができる数は？
 
 console.log(getLongestChain(1000000));
@@ -20,7 +19,7 @@ function getLongestChain(max: number): number {
 }
 
 function countChain(value: number): number {
-  let counter = 0;
+  let counter = 1;
   while (value !== 1) {
     if (value % 2 === 0) {
       value = value / 2;
