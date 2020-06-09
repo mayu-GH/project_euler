@@ -13,10 +13,12 @@ util.readFile(filepath).then((contents) => {
 function makeArray(contents: string): number[][] {
   const stringArray: string[] = contents.trim().split(/\r?\n/);
   let result: number[][] = new Array();
+
+  //下1桁から
   for (let i = 0; i < stringArray.length; i++) {
     let tmp: number[] = new Array();
-    for (let j = 0; j < stringArray[i].length; j++) {
-      tmp.push(parseInt(stringArray[i].slice(j, j + 1), 10));
+    for (let j = stringArray[i].length - 1; 0 <= j; j--) {
+      tmp.push(parseInt(stringArray[i].charAt(j), 10));
     }
     result.push(tmp);
   }
@@ -28,30 +30,38 @@ function sumNumbers(numberArray: number[][]): number[] {
   let sumArray: number[] = new Array();
 
   //各桁の合計値
-  for (let j = 0; j < numberArray[0].length; j++) {
-    let sum = 0;
-    for (let i = 0; i < numberArray.length; i++) {
-      sum += numberArray[i][j];
+  for (let i = 0; i < numberArray.length; i++) {
+    for (let j = 0; j < numberArray[i].length; j++) {
+      if (isNaN(sumArray[j])) {
+        sumArray[j] = 0;
+      }
+      sumArray[j] += numberArray[i][j];
     }
-    sumArray.push(sum);
   }
 
-  sumArray = sumArray.reverse();
   let result: number[] = new Array();
-  result[0] = 0;
 
   //繰り上がり計算
   for (let k = 0; k < sumArray.length; k++) {
+    if (isNaN(result[k])) {
+      result[k] = 0;
+    }
     let tmp = result[k] + sumArray[k];
     result[k] = tmp % 10;
-    result[k + 1] = Math.floor(tmp / 10);
+    if (tmp >= 10) {
+      result[k + 1] = Math.floor(tmp / 10);
+    }
   }
 
   //上1桁繰り上げ
-  if (!(result[result.length - 1] % 10 === 0)) {
-    let tmp = result[result.length - 1];
-    result[result.length - 1] = tmp % 10;
-    result[result.length] = Math.floor(tmp / 10);
+  let digit = String(result[result.length - 1]).length;
+
+  while (digit !== 1) {
+    let lastIndex = result.length - 1;
+    let lastValue = result[lastIndex];
+    result[lastIndex] = lastValue % 10;
+    result[lastIndex + 1] = Math.floor(lastValue / 10);
+    digit = String(result[lastIndex + 1]).length;
   }
 
   return result.reverse().slice(0, 10);
