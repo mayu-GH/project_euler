@@ -12,11 +12,11 @@ util.readFile(filepath).then((contents) => {
 //配列に入れる
 function makeArray(contents: string): number[][] {
   const stringArray: string[] = contents.trim().split(/\r?\n/);
-  let result: number[][] = new Array();
+  const result: number[][] = [];
 
   //下1桁から
   for (let i = 0; i < stringArray.length; i++) {
-    let tmp: number[] = new Array();
+    const tmp: number[] = [];
     for (let j = stringArray[i].length - 1; 0 <= j; j--) {
       tmp.push(parseInt(stringArray[i].charAt(j), 10));
     }
@@ -27,7 +27,7 @@ function makeArray(contents: string): number[][] {
 
 //加算する
 function sumNumbers(numberArray: number[][]): number[] {
-  let sumArray: number[] = new Array();
+  const sumArray: number[] = [];
 
   //各桁の合計値
   for (let i = 0; i < numberArray.length; i++) {
@@ -39,14 +39,14 @@ function sumNumbers(numberArray: number[][]): number[] {
     }
   }
 
-  let result: number[] = new Array();
+  const result: number[] = [];
 
   //繰り上がり計算
   for (let k = 0; k < sumArray.length; k++) {
     if (isNaN(result[k])) {
       result[k] = 0;
     }
-    let tmp = result[k] + sumArray[k];
+    const tmp = result[k] + sumArray[k];
     result[k] = tmp % 10;
     if (tmp >= 10) {
       result[k + 1] = Math.floor(tmp / 10);
@@ -57,8 +57,8 @@ function sumNumbers(numberArray: number[][]): number[] {
   let digit = String(result[result.length - 1]).length;
 
   while (digit !== 1) {
-    let lastIndex = result.length - 1;
-    let lastValue = result[lastIndex];
+    const lastIndex = result.length - 1;
+    const lastValue = result[lastIndex];
     result[lastIndex] = lastValue % 10;
     result[lastIndex + 1] = Math.floor(lastValue / 10);
     digit = String(result[lastIndex + 1]).length;

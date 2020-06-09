@@ -20,7 +20,7 @@ function getLongestChain(max: number): number {
 }
 
 function countChain(value: number): number {
-  let counter: number = 0;
+  let counter = 0;
   while (value !== 1) {
     if (value % 2 === 0) {
       value = value / 2;
