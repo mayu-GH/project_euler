@@ -1,6 +1,2 @@
 node_modules/*
-/.eslintrc.js
-/.prettierrc.json
-/yarn.lock
-/tsconfig.json
-/package.json
+
