@@ -7,7 +7,7 @@ console.log(getLongestChain(1000000));
 
 function getLongestChain(max: number): number {
   let longestChain = 0;
-  let result: number;
+  let result = 0;
   for (let i = 1; i <= max; i++) {
     const compareChain: number = countChain(i);
     if (longestChain < compareChain) {
