@@ -1,7 +1,7 @@
 console.log(getSumOfDigits(2, 1000));
 
 //各桁の合計
-function getSumOfDigits(value: number, power: number) {
+function getSumOfDigits(value: number, power: number): number {
   const digitsArray: number[] = calcPower(value, power);
   let sum = 0;
   for (let i = 0; i < digitsArray.length; i++) {
@@ -17,10 +17,7 @@ function calcPower(value: number, power: number): number[] {
     const tmpArray: number[] = [];
     for (let j = 0; j < result.length; j++) {
       //各桁と掛け算
-      if (isNaN(tmpArray[j])) {
-        tmpArray[j] = 0;
-      }
-      let tmp = result[j] * value + tmpArray[j];
+      let tmp = result[j] * value + (tmpArray[j] ?? 0);
       if (tmp < 10) {
         tmpArray[j] = tmp;
       } else {
@@ -28,10 +25,7 @@ function calcPower(value: number, power: number): number[] {
         let k = j;
         while (tmp >= 10) {
           tmpArray[k] = tmp % 10;
-          if (isNaN(tmpArray[k + 1])) {
-            tmpArray[k + 1] = 0;
-          }
-          tmpArray[k + 1] += Math.floor(tmp / 10);
+          tmpArray[k + 1] = Math.floor(tmp / 10) + (tmpArray[k + 1] ?? 0);
           tmp = tmpArray[k + 1];
           k++;
         }
