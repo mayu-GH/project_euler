@@ -39,12 +39,29 @@ function makeArray(contents: string): number[][] {
 
 //最大の累計を探す
 function findMaximumTotal(triangle: number[][]): number {
-  let total = triangle[0][0]; //最初の値
-  let j = 0; //最初の列
-  let maxTotal = 0;
+  const tmpArray: number[][] = triangle;
 
   //全ルート総当たり
-  for (let i = 1; i < triangle.length; i++) {}
+  for (let i = 1; i < triangle.length; i++) {
+    for (let j = 0; j < triangle[i].length; j++) {
+      //1行前かつ同列の値を加算
+      const tmp = triangle[i][j] + triangle[i - 1][j];
+      if (tmpArray[i][j] == null) {
+        tmpArray[i][j] = tmp;
+      } else {
+        if (tmpArray[i][j] < tmp) {
+          tmpArray[i][j] = tmp;
+        }
+      }
+      //1行前かつ同列の値を、同列かつ次の行の値に加算
+      if (j + 1 === tmpArray[i].length) {
+        break;
+      } else {
+        tmpArray[i][j + 1] = triangle[i][j + 1] + triangle[i - 1][j];
+      }
+    }
+  }
 
-  return total;
+  //最大の値
+  return Math.max.apply(null, tmpArray[tmpArray.length - 1]);
 }
