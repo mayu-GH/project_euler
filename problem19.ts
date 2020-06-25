@@ -1,8 +1,8 @@
 //1901年1月1日～2000年12月31日までの間に、月初めの日曜日はいくつある？
 
-console.log(checkHowManyDays('19010101', '20001231'));
+console.log(countHowManySunday('19010101', '20001231'));
 
-function checkHowManyDays(start: string, end: string): number {
+function countHowManySunday(start: string, end: string): number {
   let counter = 0;
   let tmpYear = parseInt(start.slice(0, 4));
   let tmpMonth = parseInt(start.slice(4, 6));
