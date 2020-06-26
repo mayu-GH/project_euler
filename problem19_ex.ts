@@ -2,33 +2,46 @@
 //発展課題：Dateを使わず解いてみる
 const month30Days = [4, 6, 9, 11];
 const month31Days = [1, 3, 5, 7, 8, 10, 12];
-const dayOfWeekArray = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
 console.log(countHowManySunday('19010101', '20001231'));
 
 function countHowManySunday(start: string, end: string): number {
   let counter = 0;
-  let tmpYear = parseInt(start.slice(0, 4));
-  let tmpMonth = parseInt(start.slice(4, 6));
-  let tmpDay = parseInt(start.slice(6, 8));
-  let dayOfWeekIndex = 1; //1901年1月1日は月曜日
+  const startYear = parseInt(start.slice(0, 4));
+  const startMonth = parseInt(start.slice(4, 6));
+  const startDay = parseInt(start.slice(6, 8));
   const endYear = parseInt(end.slice(0, 4));
   const endMonth = parseInt(end.slice(4, 6));
   const endDay = parseInt(end.slice(6, 8));
 
+  //日、月、...、土にそれぞれ0~6を割り当て
+  //1900年1月1日は月曜日
+  let dayOfWeekNumber = 1;
+  let tmpYear = 1900;
+  let tmpMonth = 1;
+  let tmpDay = 1;
+
+  let startCount = false;
+
   while (tmpYear <= endYear && tmpMonth <= endMonth && tmpDay <= endDay) {
-    //曜日チェック
-    if (dayOfWeekIndex === 0) {
-      const tmpDate = new Date(Date.UTC(tmpYear, tmpMonth - 1, tmpDay));
-      //console.log(tmpDate + ' : ' + tmpDate.getUTCDay());
-      counter++;
+    //tmp=startとなったらカウント開始
+    if (tmpYear === startYear && tmpMonth === startMonth && tmpDay === startDay) {
+      startCount = true;
     }
-    //当月の日数を取得
+
+    //曜日チェック
+    if (dayOfWeekNumber === 0) {
+      if (startCount) {
+        counter++;
+      }
+    }
+
+    //tmpMonthの日数を取得
     const dayCount = getHowManyDays(tmpYear, tmpMonth);
     //次の月初めの曜日を取得
-    dayOfWeekIndex += dayCount % dayOfWeekArray.length;
-    if (dayOfWeekIndex > dayOfWeekArray.length - 1) {
-      dayOfWeekIndex = dayOfWeekIndex - dayOfWeekArray.length;
+    dayOfWeekNumber += (dayCount - tmpDay + 1) % 7;
+    if (dayOfWeekNumber > 6) {
+      dayOfWeekNumber -= 7;
     }
 
     //次の月へ
