@@ -30,19 +30,14 @@ function countHowManySunday(start: string, end: string): number {
     }
 
     //曜日チェック
-    if (dayOfWeekNumber === 0) {
-      if (startCount) {
-        counter++;
-      }
+    if (dayOfWeekNumber === 0 && startCount) {
+      counter++;
     }
 
     //tmpMonthの日数を取得
-    const dayCount = getHowManyDays(tmpYear, tmpMonth);
+    const dayCount = getDaysOfMonth(tmpYear, tmpMonth);
     //次の月初めの曜日を取得
-    dayOfWeekNumber += (dayCount - tmpDay + 1) % 7;
-    if (dayOfWeekNumber > 6) {
-      dayOfWeekNumber -= 7;
-    }
+    dayOfWeekNumber = (dayOfWeekNumber + dayCount - tmpDay + 1) % 7;
 
     //次の月へ
     if (tmpMonth === 12) {
@@ -58,14 +53,14 @@ function countHowManySunday(start: string, end: string): number {
 }
 
 //日数取得
-function getHowManyDays(year: number, month: number): number {
+function getDaysOfMonth(year: number, month: number): number {
   if (month30Days.includes(month)) {
     return 30;
   } else if (month31Days.includes(month)) {
     return 31;
   } else {
     //2月
-    if (judgeLeapYear(year)) {
+    if (isLeapYear(year)) {
       return 29;
     } else {
       return 28;
@@ -74,7 +69,7 @@ function getHowManyDays(year: number, month: number): number {
 }
 
 //閏年判定
-function judgeLeapYear(year: number): boolean {
+function isLeapYear(year: number): boolean {
   if (year % 400 === 0) {
     return true;
   }
