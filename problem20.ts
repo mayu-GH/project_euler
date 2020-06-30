@@ -1,22 +1,12 @@
 //100の階乗の各桁の合計を算出する
 
-console.log(calcFactorialDigitSum(100));
+console.log(calcDigitSum(100));
 
-function calcFactorialDigitSum(startNumber: number): number {
-  let factorial = 1;
+//格桁の合計
+function calcDigitSum(startNumber: number): number {
   //階乗の計算
-  for (let i = startNumber; 0 < i; i--) {
-    factorial = factorial * i;
-    //桁あふれするかも
-  }
-
-  //各桁を配列に入れる
-  const digitArray: number[] = factorial
-    .toString()
-    .split('')
-    .map((value) => parseInt(value, 10));
-
-  //各桁の合計
+  const digitArray: number[] = calcFactorial(startNumber);
+  //合計
   let sum = 0;
   for (let j = 0; j < digitArray.length; j++) {
     sum += digitArray[j];
@@ -25,12 +15,27 @@ function calcFactorialDigitSum(startNumber: number): number {
 }
 
 //階乗の計算
-function calcFactorial(startNumber: number) {
-  let digitArray: number[] = [1];
-  let factorial = 1;
-  //階乗の計算
-  for (let i = startNumber; 0 < i; i--) {
-    factorial = factorial * i;
-    //桁あふれするかも
+function calcFactorial(startNumber: number): number[] {
+  let result: number[] = [1];
+  for (let i = startNumber; i > 0; i--) {
+    const tmpArray: number[] = [];
+    for (let j = 0; j < result.length; j++) {
+      //各桁と掛け算
+      let tmp = result[j] * i + (tmpArray[j] ?? 0);
+      if (tmp < 10) {
+        tmpArray[j] = tmp;
+      } else {
+        //繰り上がり
+        let k = j;
+        while (tmp >= 10) {
+          tmpArray[k] = tmp % 10;
+          tmpArray[k + 1] = Math.floor(tmp / 10) + (tmpArray[k + 1] ?? 0);
+          tmp = tmpArray[k + 1];
+          k++;
+        }
+      }
+    }
+    result = tmpArray;
   }
+  return result.reverse();
 }
