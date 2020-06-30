@@ -7,11 +7,7 @@ function calcDigitSum(startNumber: number): number {
   //階乗の計算
   const digitArray: number[] = calcFactorial(startNumber);
   //合計
-  let sum = 0;
-  for (let j = 0; j < digitArray.length; j++) {
-    sum += digitArray[j];
-  }
-  return sum;
+  return digitArray.reduce((accumulator, currentValue) => accumulator + currentValue);
 }
 
 //階乗の計算
