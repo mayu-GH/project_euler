@@ -1,29 +1,29 @@
 //1000以下のすべての友愛数の和を求める
 
-console.log(calcSumofAmicableNumbers(300));
+console.log(calcSumofAmicableNumbers(10000));
 
 //指定の数以下の全ての友愛数の和を求める
 function calcSumofAmicableNumbers(max: number): number {
-  let arrayCheck: number[][] = [];
-  let j = 0;
+  let arraySumOfDivisor: number[][] = [];
 
-  //数値のその約数の和を配列に入れる
+  //数値とその約数の和を配列に入れる
   for (let i = max; 0 < i; i--) {
-    arrayCheck[j] = [i, calcSumOfProperDivisor(i)];
-    j++;
+    arraySumOfDivisor.push([i, calcSumOfProperDivisor(i)]);
   }
 
   let sum = 0;
 
-  for (let j = 0; j < arrayCheck.length; j++) {
-    for (let k = 0; k < arrayCheck.length; k++) {
-      if (j !== k) {
-        if (arrayCheck[k][1] === arrayCheck[j][0] && arrayCheck[k][0] === arrayCheck[j][1]) {
-          //友愛数
-          sum += arrayCheck[j][0] + arrayCheck[j][1];
-          console.log(arrayCheck[j][0], arrayCheck[j][1]);
-          break;
-        }
+  //友愛数を見つける
+  for (let j = 0; j < arraySumOfDivisor.length; j++) {
+    for (let k = 0; k < arraySumOfDivisor.length; k++) {
+      if (
+        j !== k &&
+        arraySumOfDivisor[k][1] === arraySumOfDivisor[j][0] &&
+        arraySumOfDivisor[k][0] === arraySumOfDivisor[j][1]
+      ) {
+        //友愛数を加算
+        sum += arraySumOfDivisor[j][0];
+        break;
       }
     }
   }
