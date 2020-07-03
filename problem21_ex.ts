@@ -1,10 +1,10 @@
-//1000以下のすべての友愛数の和を求める
+//10000以下のすべての友愛数の和を求める
 
 console.log(calcSumOfAmicableNumbers(10000));
 
 //指定の数以下の全ての友愛数の和を求める
 function calcSumOfAmicableNumbers(max: number): number {
-  const arraySumOfDivisor = new Map();
+  const arraySumOfDivisor = new Map<number, number>();
 
   //数値とその約数の和を配列に入れる
   for (let i = max; 0 < i; i--) {
