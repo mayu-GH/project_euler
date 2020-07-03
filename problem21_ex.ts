@@ -1,21 +1,21 @@
 //1000以下のすべての友愛数の和を求める
 
-console.log(calcSumOfAmicableNumbers(300));
+console.log(calcSumOfAmicableNumbers(10000));
 
 //指定の数以下の全ての友愛数の和を求める
 function calcSumOfAmicableNumbers(max: number): number {
-  const arraySumOfDivisor: number[][] = [];
+  const arraySumOfDivisor = new Map();
 
   //数値とその約数の和を配列に入れる
   for (let i = max; 0 < i; i--) {
-    arraySumOfDivisor.push([i, calcSumOfProperDivisor(i)]);
+    arraySumOfDivisor.set(i, calcSumOfProperDivisor(i));
   }
 
   let sum = 0;
 
   //友愛数を見つける
   for (const element of arraySumOfDivisor) {
-    if (arraySumOfDivisor.indexOf([element[1], element[0]]) !== -1) {
+    if (element[0] == arraySumOfDivisor.get(element[1]) && element[0] !== element[1]) {
       sum += element[0];
     }
   }

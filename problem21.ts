@@ -1,4 +1,4 @@
-//1000以下のすべての友愛数の和を求める
+//10000以下のすべての友愛数の和を求める
 
 console.log(calcSumOfAmicableNumbers(10000));
 
